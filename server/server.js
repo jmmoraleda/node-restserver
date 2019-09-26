@@ -19,13 +19,23 @@ app.use(require('./routes/usuario'));
 
 
 
-mongoose.connect(process.env.URLDB, (err, res) => {
+// mongoose.connect(process.env.URLDB, (err, res) => {
 
-    if (err) throw err;
+//     if (err) throw err;
 
-    console.log('Base de datos ONLINE');
+//     console.log('Base de datos ONLINE');
 
-});
+// });
+
+// La configuración de userNewUrlParser y useCreateIndex es una actualización del curso por lo que hay que dejarlo siempre
+mongoose.connect(process.env.URLDB, { userNewUrlParser: true, useCreateIndex: true },
+    (err, res) => {
+
+        if (err) throw err;
+
+        console.log('Base de datos ONLINE');
+
+    });
 
 
 
