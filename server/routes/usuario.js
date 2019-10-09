@@ -9,7 +9,7 @@ const { verificaToken, verificaAdmin_Role } = require('../middlewares/autenticac
 const app = express();
 
 
-app.get('/usuario', verificaToken, (req, res) => { // verificaToken es el middleware que se dispara cuando se quiera verificar la ruta /usuario
+app.get('/usuario', verificaToken, (req, res) => {
 
 
     let desde = req.query.desde || 0;
