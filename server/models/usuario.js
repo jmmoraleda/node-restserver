@@ -18,7 +18,7 @@ let usuarioSchema = new Schema({
     },
     email: {
         type: String,
-        unique: true, // No permitimos usuarios que tengan el mismo email
+        unique: true,
         required: [true, 'El correo es necesario']
     },
     password: {
@@ -32,7 +32,7 @@ let usuarioSchema = new Schema({
     role: {
         type: String,
         default: 'USER_ROLE',
-        enum: rolesValidos // Sólo admitimos los roles de la enumeración
+        enum: rolesValidos
     },
     estado: {
         type: Boolean,
@@ -44,7 +44,7 @@ let usuarioSchema = new Schema({
     }
 });
 
-// Con lo siguiente conseguimos que, siempre que imprimamos un objeto usuario como un JSON, no imprimamos el password para no dar pistas
+
 usuarioSchema.methods.toJSON = function() {
 
     let user = this;
@@ -54,7 +54,7 @@ usuarioSchema.methods.toJSON = function() {
     return userObject;
 }
 
-// Con esto conseguimos usar el plugin uniqueValidator para añadir un mensaje personalizado.
+
 usuarioSchema.plugin(uniqueValidator, { message: '{PATH} debe de ser único' });
 
 
