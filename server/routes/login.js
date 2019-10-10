@@ -104,16 +104,16 @@ app.post('/google', async(req, res) => {
             });
         };
 
-        if (usuarioDB) {
+        if (usuarioDB) { // Si ya existe el usuario en nuestra BD.
 
-            if (usuarioDB.google === false) {
+            if (usuarioDB.google === false) { // Si no es un usuario de Google no permitimos que se valide por Google
                 return res.status(400).json({
                     ok: false,
                     err: {
                         message: 'Debe de usar su autenticación normal'
                     }
                 });
-            } else {
+            } else { // Si es un usuario de google lo que hacemos es renovar su token
                 let token = jwt.sign({
                     usuario: usuarioDB
                 }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });
