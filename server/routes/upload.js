@@ -10,7 +10,7 @@ const path = require('path'); // Para poder construir un path
 
 
 // default options
-app.use(fileUpload());
+app.use(fileUpload({ useTempFiles: true }));
 
 
 app.put('/upload/:tipo/:id', function(req, res) {
