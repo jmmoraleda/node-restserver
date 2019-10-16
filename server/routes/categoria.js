@@ -12,8 +12,8 @@ let Categoria = require('../models/categoria');
 app.get('/categoria', verificaToken, (req, res) => {
 
     Categoria.find({})
-        .sort('descripcion') // Ordenamos por la descripción
-        .populate('usuario', 'nombre email') // Especificamos los datos que queremos ver en la data
+        .sort('descripcion')
+        .populate('usuario', 'nombre email')
         .exec((err, categorias) => {
 
             if (err) {
@@ -28,7 +28,7 @@ app.get('/categoria', verificaToken, (req, res) => {
                 categorias
             });
 
-        });
+        })
 });
 
 // ============================
@@ -110,7 +110,7 @@ app.post('/categoria', verificaToken, (req, res) => {
 });
 
 // ============================
-// Actualizar una categoría
+// Mostrar todas las categorias
 // ============================
 app.put('/categoria/:id', verificaToken, (req, res) => {
 
@@ -148,7 +148,7 @@ app.put('/categoria/:id', verificaToken, (req, res) => {
 });
 
 // ============================
-// Borramos una categorias
+// Mostrar todas las categorias
 // ============================
 app.delete('/categoria/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
     // solo un administrador puede borrar categorias

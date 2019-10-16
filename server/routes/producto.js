@@ -18,7 +18,7 @@ app.get('/productos', verificaToken, (req, res) => {
     let desde = req.query.desde || 0;
     desde = Number(desde);
 
-    Producto.find({ disponible: true }) // Obtener todos los que estén disponibles
+    Producto.find({ disponible: true })
         .skip(desde)
         .limit(5)
         .populate('usuario', 'nombre email')
@@ -87,7 +87,6 @@ app.get('/productos/buscar/:termino', verificaToken, (req, res) => {
 
     let termino = req.params.termino;
 
-    // Ahora creamos una expresión regular basada en el término pero pasándole una "i" para que no distinga entre mayúsculas, minúsculas, etc.
     let regex = new RegExp(termino, 'i');
 
     Producto.find({ nombre: regex })
